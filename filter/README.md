@@ -10,6 +10,14 @@
 - [老照片特效](http://blog.csdn.net/jia20003/article/details/9142111)
 - [canvas对图片的像素级处理--ImageData的应用](http://www.cnblogs.com/suspiderweb/p/4936723.html)
 - [html5 canvas 详细使用教程](http://blog.csdn.net/clh604/article/details/8536059)
+- [神奇的图像处理算法](http://blog.chinaunix.net/uid-23065002-id-4392043.html)
+  - 像素图生成向量图的算法
+  - 黑白图片的着色算法
+  - 消除阴影的算法
+  - HDR照片的算法
+  - 消除杂物的算法
+  - 自动合成照片的算法
+  - 美容算法
 
 ## 灰度效果
 
