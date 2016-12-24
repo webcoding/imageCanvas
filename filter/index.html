@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用 Canvas 实现图片滤镜效果</title>
+<style type="text/css">
+*{user-select:none;cursor:default}
+body{font:13px/18px Arial,sans-serif;background:#000;color:#fff;overflow:hidden}
+.body{position:relative;border:1px solid #C3C3C3;background:#e9e9e9;overflow:auto;max-height:500px;min-height:200px}
+.canvas-container canvas{margin:0 auto;display:block;border:1px solid rgba(0,0,0,.5);background:#fff}
+a{color:inherit;cursor:pointer}
+ul{padding:0 0 0 20px}
+h1{font:700 italic 30px/30px Georgia;text-align:center}
+h2{font:700 italic 17px/17px Georgia;padding-top:10px}
+small{display:block;font-size:11px;line-height:15px}
+#lab{position:absolute;left:0;top:0;width:80%;height:100%}
+#help{position:absolute;right:0;top:0;width:20%;float:right;overflow:auto}
+.canvas-container{left:50%;top:50%;margin-left:-320px;margin-top:240px;width:640px;height:480px;margin:180px auto 0}
+.grid{
+  background-image:-webkit-linear-gradient(top,transparent 39px,rgba(200,200,200,.5) 40px),
+  -webkit-linear-gradient(left,transparent 39px,rgba(200,200,200,.5) 40px);
+  background-image:-moz-linear-gradient(top,transparent 39px,rgba(200,200,200,.5) 40px),
+  -moz-linear-gradient(left,transparent 39px,rgba(200,200,200,.5) 40px);
+  background-image:-o-linear-gradient(top,transparent 39px,rgba(200,200,200,.5) 40px),
+  -o-linear-gradient(left,transparent 39px,rgba(200,200,200,.5) 40px);
+  background-image:-ms-linear-gradient(top,transparent 39px,rgba(200,200,200,.5) 40px),
+  -ms-linear-gradient(left,transparent 39px,rgba(200,200,200,.5) 40px);
+  background-image:linear-gradient(top,transparent 39px,rgba(200,200,200,.5) 40px),
+  linear-gradient(left,transparent 39px,rgba(200,200,200,.5) 40px);
+  -webkit-background-size:40px 40px;
+  -moz-background-size:40px 40px;
+  background-size:40px 40px
+}
+.original-container{position:absolute;left:0;top:0;width:160px;height:120px}
+.original-container img{margin:0 auto;max-width:160px;max-height:120px}
+.help-container{margin:0 10px 0 30px}
+</style>
+</head>
+<body>
+<div id="lab" class="grid">
+  <div class="original-container">
+    <img id="origin" src=""></div>
+    <div class="lab-contraner">
+      <div class="canvas-container">
+        <canvas id="myCanvas" width="640" height="480">Gray Filter</canvas>
+      </div>
+    </div>
+  </div>
+  <div>
+    <div id="help">
+      <div class="help-container">
+        <h1>Image Filters</h1>
+        <p>Author <a href="http://sanyeao.me/">Winter</a>
+        </p>
+        <h2>Interactions:</h2>
+        <ul>
+          <li>Upload a image and select your favorite filters.</li>
+        </ul>
+        <div class="bt">
+          <div><input type="file" name="file" vale="select a image" id="up-button"></div>
+          <ul>
+            <li>Download the rendered image.</li>
+          </ul>
+          <div><input type="button" id="download" value="download"></div>
+          <ul>
+            <li><span><input type="radio" value="spread" id="spread" name="filter" onchange="change(this)"><label for="spread">Spread</label></span></li>
+            <li><span><input type="radio" id="gray" checked="checked" name="filter" onchange="change(this)"><label for="gray">Gray</label></span></li>
+            <li><span><input type="radio" id="comic" name="filter" onchange="change(this)"><label for="comic">Comic</label></span></li>
+            <li><span><input type="radio" id="old" name="filter" onchange="change(this)"><label for="old">Old</label></span></li>
+            <li><span><input type="radio" id="negatives" name="filter" onchange="change(this)"><label for="negatives">negatives</label></span></li>
+            <li><span><input type="radio" id="black" name="filter" onchange="change(this)"><label for="black">Black</label></span></li>
+            <li><span><input type="radio" id="cameo" name="filter" onchange="change(this)"><label for="cameo">Cameo</label></span></li>
+            <li><span><input type="radio" id="casting" name="filter" onchange="change(this)"><label for="casting">Casting</label></span></li>
+            <li><span><input type="radio" id="frozen" name="filter" onchange="change(this)"><label for="frozen">Frozen</label></span></li>
+            <li><span><input type="radio" id="sketch" name="filter" onchange="change(this)"><label for="sketch">Sketch</label></span></li>
+            <li><span><input type="radio" id="gausian" name="filter" onchange="change(this)"><label for="gausian">Gausian</label></span></li>
+            <li><span><input type="radio" id="opacity" name="filter" onchange="change(this)"><label for="opacity">Opacity</label></span></li>
+            <li><span><input type="radio" id="bright" name="filter" onchange="change(this)"><label for="bright">Bright</label></span></li>
+            <li><span><input type="radio" id="softblow" name="filter" onchange="change(this)"><label for="softblow">Softblow</label></span></li>
+          </ul>
+        </div>
+        <p>Design by &nbsp;<a href="http://sanyecao.me" target="_blank">sanyecao</a>&nbsp;&copy;<script>document.write((new Date).getFullYear())</script></p>
+        <p></p>
+      </div>
+    </div>
+  </div>
+</body>
+<script type="text/javascript" src="filter.js"></script>
+<script>
+var defaultWidth=640,
+    defaultHeight=480,
+    canvas=document.getElementById("myCanvas"),
+    context=canvas.getContext("2d"),
+    img=new Image,
+    fileBtn=document.getElementById("up-button"),
+    download=document.getElementById("download"),
+    origin=document.getElementById("origin");
+var change=function(e){
+  setCanvasSize(img.width,img.height),
+  context.clearRect(0,0,canvas.width,canvas.height),
+  context.drawImage(img,0,0,canvas.width,canvas.height);
+
+  var a=context.getImageData(0,0,canvas.width,canvas.height);
+  render(a),
+  context.putImageData(a,0,0)
+};
+var _fixType=function(e){
+  e=e.toLowerCase().replace(/jpg/i,"jpeg");
+  var a=e.match(/png|jpeg|bmp|gif/)[0];
+  return"image/"+a
+};
+var saveFile=function(e,a){
+  var t=document.createElementNS("http://www.w3.org/1999/xhtml","a");
+  t.href=e,
+  t.download=a;
+  var n=document.createEvent("MouseEvents");
+  n.initMouseEvent("click",!0,!1,window,0,0,0,0,0,!1,!1,!1,!1,0,null),
+  t.dispatchEvent(n)
+};
+var setCanvasSize=function(e,a){
+  var t=a/e,
+  n=defaultHeight/defaultWidth;
+  t>=n&&a>=defaultHeight&&(a=defaultHeight,e=a/t),
+  t<=n&&e>=defaultWidth&&(e=defaultWidth,a=e*t),
+  canvas.width=e,
+  canvas.height=a
+};
+var render=function(e){
+  var a="",
+  t=document.getElementsByName("filter");
+  for(i=0;i<t.length;i++){
+    t[i].checked&&(a=t[i].id);
+  }
+  switch(a){
+    case"gray":
+      e=gray(e);
+      break;
+    case"spread":
+      e=spread(e);
+      break;
+    case"comic":
+      e=comic(e);
+      break;
+    case"old":
+      e=old(e);
+      break;
+    case"negatives":
+      e=negatives(e);
+      break;
+    case"black":
+      e=black(e);
+      break;
+    case"cameo":
+      e=cameo(e);
+      break;
+    case"casting":
+      e=casting(e);
+      break;
+    case"frozen":
+      e=frozen(e);
+      break;
+    case"opacity":
+      e=opacity(e);
+      break;
+    case"sketch":
+      e=sketch(e);
+      break;
+    case"bright":
+      e=bright(e);
+      break;
+    case"softblow":
+      e=softblow(e);
+      break;
+    default:
+      e=gausian(e)
+  }
+};
+fileBtn.onchange=function(e){
+  var a=new FileReader;
+  a.readAsDataURL(fileBtn.files[0]),
+  a.onload=function(){origin.src=a.result,img.src=a.result}
+},
+download.onclick=function(){
+  var e="png",a=canvas.toDataURL(e);
+  a=a.replace(_fixType(e),"image/octet-stream");
+  var t="sanyecao_"+(new Date).getTime()+"."+e;saveFile(a,t)
+},
+window.onload=function(){
+  img.src="original.jpg",
+  origin.src="original.jpg",
+  img.onload=function(){
+    setCanvasSize(img.width,img.height),
+    context.clearRect(0,0,canvas.width,canvas.height),
+    context.drawImage(img,0,0,canvas.width,canvas.height);
+    var e=context.getImageData(0,0,canvas.width,canvas.height);
+    render(e),
+    context.putImageData(e,0,0)
+  }
+}
+</script>
+</html>
