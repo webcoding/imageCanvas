@@ -11,14 +11,14 @@
   - 内容特征法
 - [如何识别图像边缘？](http://www.ruanyifeng.com/blog/2016/07/edge-recognition.html)
   - 加州大学的学生 Adit Deshpande 写了一篇文章[《A Beginner's Guide To Understanding Convolutional Neural Networks》](https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/)，介绍了一种最简单的算法，非常具有启发性，体现了图像识别的基本思路。
-  - 像素图生成向量图的算法 graphic-algorithms
-    - Implemented by [Scale2x](http://www.scale2x.it/) (on Sourceforge)
-    - [HQX](https://github.com/phoboslab/js-hqx) is a similar super resolution command line tool to enlarge images.
-  - [黑白图片的着色算法](http://www.cs.huji.ac.il/~yweiss/Colorization/index.html)
-  - 消除阴影的算法
-    - [ShadowRemoval python算法](http://www.cs.huji.ac.il/~danix/ShadowRemoval/)
-    - [shadow_removal from face](https://github.com/imgproc2014/shadow_removal)[demo](http://imgproc2014.github.io/shadow_removal/)
-  - HDR照片的算法
-  - [消除杂物的算法](http://www.logarithmic.net/pfh/resynthesizer)
-  - [自动合成照片的算法](http://cg.cs.tsinghua.edu.cn/montage/main.htm)
-  - [美容算法](http://www.leyvand.com/beautification2008/)
+- 像素图生成向量图的算法 graphic-algorithms
+  - Implemented by [Scale2x](http://www.scale2x.it/) (on Sourceforge)
+  - [HQX](https://github.com/phoboslab/js-hqx) is a similar super resolution command line tool to enlarge images.
+- [黑白图片的着色算法](http://www.cs.huji.ac.il/~yweiss/Colorization/index.html)
+- 消除阴影的算法
+  - [ShadowRemoval python算法](http://www.cs.huji.ac.il/~danix/ShadowRemoval/)
+  - [shadow_removal from face](https://github.com/imgproc2014/shadow_removal)[demo](http://imgproc2014.github.io/shadow_removal/)
+- HDR照片的算法
+- [消除杂物的算法](http://www.logarithmic.net/pfh/resynthesizer)
+- [自动合成照片的算法](http://cg.cs.tsinghua.edu.cn/montage/main.htm)
+- [美容算法](http://www.leyvand.com/beautification2008/)
