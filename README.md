@@ -1,3 +1,24 @@
 # imageCanvas
 
 - 用 Canvas 实现图片滤镜效果[demo](https://webcoding.github.io/imageCanvas/filter)
+- 神奇的图像处理算法[原文](http://www.scriptol.com/programming/graphic-algorithms.php)[翻译](http://www.ruanyifeng.com/blog/2011/08/amazing_algorithms_of_image_processing.html)
+- [相似图片搜索的原理](http://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html)
+  - 感知哈希算法 Perceptual hash algorithm
+    - [参见Wote用python语言写的imgHash.py](http://www.ruanyifeng.com/blog/2011/07/imgHash.txt) 最佳用途是根据缩略图，找出原图
+    - 实际应用中，往往采用更强大的[pHash](http://www.phash.org/)算法和[SIFT](http://en.wikipedia.org/wiki/Scale-invariant_feature_transform)算法，它们能够识别图片的变形。
+- [相似图片搜索的原理（二）](http://www.ruanyifeng.com/blog/2013/03/similar_image_search_part_ii.html)
+  - 颜色分布法[特征值](http://www.isnowfy.com/similar-image-search/)
+  - 内容特征法
+- [如何识别图像边缘？](http://www.ruanyifeng.com/blog/2016/07/edge-recognition.html)
+  - 加州大学的学生 Adit Deshpande 写了一篇文章[《A Beginner's Guide To Understanding Convolutional Neural Networks》](https://adeshpande3.github.io/adeshpande3.github.io/A-Beginner%27s-Guide-To-Understanding-Convolutional-Neural-Networks/)，介绍了一种最简单的算法，非常具有启发性，体现了图像识别的基本思路。
+  - 像素图生成向量图的算法 graphic-algorithms
+    - Implemented by [Scale2x](http://www.scale2x.it/) (on Sourceforge)
+    - [HQX](https://github.com/phoboslab/js-hqx) is a similar super resolution command line tool to enlarge images.
+  - [黑白图片的着色算法(http://www.cs.huji.ac.il/~yweiss/Colorization/index.html)
+  - 消除阴影的算法
+    - [ShadowRemoval python算法](http://www.cs.huji.ac.il/~danix/ShadowRemoval/)
+    - [shadow_removal from face](https://github.com/imgproc2014/shadow_removal)[demo](http://imgproc2014.github.io/shadow_removal/)
+  - HDR照片的算法
+  - [消除杂物的算法](http://www.logarithmic.net/pfh/resynthesizer)
+  - [自动合成照片的算法](http://cg.cs.tsinghua.edu.cn/montage/main.htm)
+  - [美容算法](http://www.leyvand.com/beautification2008/)
