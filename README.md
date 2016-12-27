@@ -5,7 +5,7 @@
 - [相似图片搜索的原理](http://www.ruanyifeng.com/blog/2011/07/principle_of_similar_image_search.html)
   - 感知哈希算法 Perceptual hash algorithm
     - [参见Wote用python语言写的imgHash.py](http://www.ruanyifeng.com/blog/2011/07/imgHash.txt) 最佳用途是根据缩略图，找出原图
-    - 实际应用中，往往采用更强大的[pHash](http://www.phash.org/)算法[JS版 pHash](https://github.com/scienceai/phash-imagemagick)和[SIFT](http://en.wikipedia.org/wiki/Scale-invariant_feature_transform)算法，它们能够识别图片的变形。
+    - 实际应用中，往往采用更强大的[pHash](http://www.phash.org/)算法([JS版 pHash](https://github.com/scienceai/phash-imagemagick))和[SIFT](http://en.wikipedia.org/wiki/Scale-invariant_feature_transform)算法，它们能够识别图片的变形。
 - [相似图片搜索的原理（二）](http://www.ruanyifeng.com/blog/2013/03/similar_image_search_part_ii.html)
   - 颜色分布法[特征值](http://www.isnowfy.com/similar-image-search/)
   - 内容特征法
@@ -14,7 +14,7 @@
   - 像素图生成向量图的算法 graphic-algorithms
     - Implemented by [Scale2x](http://www.scale2x.it/) (on Sourceforge)
     - [HQX](https://github.com/phoboslab/js-hqx) is a similar super resolution command line tool to enlarge images.
-  - [黑白图片的着色算法(http://www.cs.huji.ac.il/~yweiss/Colorization/index.html)
+  - [黑白图片的着色算法](http://www.cs.huji.ac.il/~yweiss/Colorization/index.html)
   - 消除阴影的算法
     - [ShadowRemoval python算法](http://www.cs.huji.ac.il/~danix/ShadowRemoval/)
     - [shadow_removal from face](https://github.com/imgproc2014/shadow_removal)[demo](http://imgproc2014.github.io/shadow_removal/)
